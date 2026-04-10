@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.hero {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(45deg, #08001f, #30197d);
+    color: #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Responsive container */
+.container {
+    width: min(800px, 95%);
+    height: auto;
+    min-height: 180px;
+    position: relative;
+}
+
+/* Clock box */
+.clock {
+    width: 100%;
+    min-height: 180px;
+    background: rgba(235, 0, 255, 0.11);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(40px);
+    flex-wrap: wrap;
+    padding: 20px 10px;
+}
+
+/* Decorative shapes */
+.container::before {
+    content: '';
+    width: 180px;
+    height: 180px;
+    background: #f41b75;
+    border-radius: 5px;
+    position: absolute;
+    left: -40px;
+    top: -40px;
+    z-index: -1;
+}
+
+.container::after {
+    content: '';
+    width: 180px;
+    height: 180px;
+    background: #419aff;
+    border-radius: 50%;
+    position: absolute;
+    right: -30px;
+    bottom: -40px;
+    z-index: -1;
+}
+
+/* Time numbers */
+.clock span {
+    font-size: clamp(30px, 6vw, 80px);
+    width: clamp(60px, 10vw, 110px);
+    display: inline-block;
+    text-align: center;
+    position: relative;
+}
+
+/* Labels */
+.clock span::after {
+    content: '';
+    font-size: clamp(10px, 2vw, 16px);
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+#hrs::after {
+    content: 'HOURS';
+}
+
+#min::after {
+    content: 'MINS';
+}
+
+#sec::after {
+    content: 'SEC';
+}
+
+/* 📱 Tablets */
+@media (max-width: 768px) {
+    .container::before,
+    .container::after {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* 📱 Mobile */
+@media (max-width: 480px) {
+    .clock {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .container::before,
+    .container::after {
+        display: none;
+    }
+
+    .clock span {
+        width: auto;
+    }
+}
