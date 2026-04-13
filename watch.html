@@ -1,43 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital clock using javascript</title>
+    <title>Digital Clock</title>
     <link rel="stylesheet" href="watch.css">
 </head>
+
 <body>
 <div class="hero">
     <div class="container">
         <div class="clock">
+
             <span id="hrs">00</span>
             <span>:</span>
+
             <span id="min">00</span>
             <span>:</span>
+
             <span id="sec">00</span>
-            
+
+            <span id="ampm">AM</span>
 
         </div>
     </div>
 </div>
 
-<SCript>
+<script>
     let hrs = document.getElementById("hrs");
     let min = document.getElementById("min");
     let sec = document.getElementById("sec");
+    let ampm = document.getElementById("ampm");
 
-setInterval(()=>{
-     let currentTime = new Date();
+    setInterval(() => {
+        let currentTime = new Date();
 
-   
-    hrs.innerHTML = (currentTime.getHours()<10?"0":"") + currentTime.getHours();
-     min.innerHTML = (currentTime.getMinutes()<10?"0":"") + currentTime.getMinutes();
-      sec.innerHTML = (currentTime.getSeconds()<10?"0":"") + currentTime.getSeconds();
-},1000)
+        let h = currentTime.getHours();
+        let m = currentTime.getMinutes();
+        let s = currentTime.getSeconds();
 
+        let session = "AM";
 
-</SCript>
-    
+        if (h >= 12) {
+            session = "PM";
+        }
+
+        if (h > 12) {
+            h = h - 12;
+        }
+
+        if (h === 0) {
+            h = 12;
+        }
+
+        hrs.innerHTML = (h < 10 ? "0" : "") + h;
+        min.innerHTML = (m < 10 ? "0" : "") + m;
+        sec.innerHTML = (s < 10 ? "0" : "") + s;
+        ampm.innerHTML = session;
+
+    }, 1000);
+</script>
+
 </body>
 </html>
