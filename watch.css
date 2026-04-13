@@ -1,59 +1,154 @@
-@media (max-width: 1024px) {
-    .clock span {
-        font-size: clamp(35px, 7vw, 80px);
-    }
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
+/* BACKGROUND (Ultra Modern Gradient) */
+.hero {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #1a0033, #000010 60%, #000);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Animated glowing background blobs */
+.hero::before,
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    filter: blur(120px);
+    border-radius: 50%;
+    animation: floatGlow 6s infinite alternate ease-in-out;
+    z-index: 0;
+}
+
+.hero::before {
+    background: #ff00cc;
+    top: 10%;
+    left: 10%;
+}
+
+.hero::after {
+    background: #00d4ff;
+    bottom: 10%;
+    right: 10%;
+}
+
+@keyframes floatGlow {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(-30px) scale(1.1); }
+}
+
+/* CONTAINER */
+.container {
+    position: relative;
+    z-index: 1;
+    width: min(800px, 95%);
+}
+
+/* GLASS CLOCK CARD */
+.clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 35px 25px;
+    border-radius: 25px;
+
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 10px 40px rgba(0,0,0,0.6),
+        inset 0 0 20px rgba(255,255,255,0.05);
+
+    transition: 0.3s ease;
+}
+
+.clock:hover {
+    transform: scale(1.03);
+    box-shadow: 
+        0 15px 60px rgba(0,0,0,0.8),
+        0 0 30px rgba(255,0,200,0.3);
+}
+
+/* TIME NUMBERS */
+.clock span {
+    font-size: clamp(40px, 8vw, 95px);
+    font-weight: 700;
+    color: #ffffff;
+    min-width: 70px;
+    text-align: center;
+
+    text-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+/* COLONS (NEON BLINK) */
+.clock span:nth-child(2),
+.clock span:nth-child(4) {
+    color: #ff4dff;
+    animation: blink 1s infinite, glow 1.5s infinite alternate;
+}
+
+@keyframes blink {
+    50% { opacity: 0.2; }
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 10px #ff4dff; }
+    100% { text-shadow: 0 0 25px #ff4dff; }
+}
+
+/* AM/PM STYLE */
+#ampm {
+    font-size: clamp(14px, 3vw, 28px);
+    font-weight: bold;
+    margin-left: 10px;
+
+    padding: 6px 12px;
+    border-radius: 10px;
+
+    background: rgba(0, 255, 213, 0.1);
+    border: 1px solid rgba(0, 255, 213, 0.4);
+
+    color: #00ffd5;
+    text-shadow: 0 0 10px #00ffd5;
+}
+
+/* TABLET */
 @media (max-width: 768px) {
     .clock {
-        padding: 25px 18px;
-        gap: 10px;
-    }
-
-    .clock span {
-        font-size: clamp(32px, 9vw, 70px);
-        min-width: 50px;
-    }
-
-    #ampm {
-        font-size: 20px;
-        padding: 5px 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .clock {
-        flex-direction: column;
-        padding: 20px 15px;
-        gap: 6px;
-        text-align: center;
-    }
-
-    .clock span {
-        font-size: 40px;
-        min-width: auto;
-    }
-
-    #ampm {
-        margin-left: 0;
-        font-size: 16px;
+        padding: 25px 15px;
     }
 
     .hero::before,
     .hero::after {
-        width: 140px;
-        height: 140px;
-        filter: blur(70px);
+        width: 200px;
+        height: 200px;
+        filter: blur(90px);
     }
 }
 
-@media (max-width: 350px) {
-    .clock span {
-        font-size: 30px;
+/* MOBILE */
+@media (max-width: 480px) {
+    .clock {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
     }
 
     #ampm {
-        font-size: 12px;
-        padding: 4px 8px;
+        margin-left: 0;
     }
 }
