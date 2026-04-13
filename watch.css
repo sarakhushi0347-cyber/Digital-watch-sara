@@ -1,164 +1,59 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
-
-/* BACKGROUND */
-.container{
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: radial-gradient(circle at top, #1a1a2e, #16213e, #0f3460);
-    padding: 15px;
-}
-
-/* CALCULATOR CARD (GLASS STYLE) */
-.calculator{
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-
-    padding: 20px;
-    border-radius: 18px;
-    width: 100%;
-    max-width: 350px;
-
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-/* DISPLAY */
-form .display input{
-    width: 100%;
-    height: 75px;
-    border: none;
-    outline: none;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    padding: 10px;
-
-    font-size: 34px;
-    text-align: right;
-
-    background: rgba(255,255,255,0.1);
-    color: #fff;
-
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
-}
-
-/* BUTTONS */
-.calculator form input[type="button"]{
-    width: 22%;
-    aspect-ratio: 1 / 1;
-    margin: 2%;
-    border: none;
-    border-radius: 12px;
-
-    font-size: 18px;
-    cursor: pointer;
-
-    background: rgba(255,255,255,0.08);
-    color: #fff;
-
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-
-    transition: 0.25s ease;
-}
-
-/* HOVER EFFECT */
-.calculator form input[type="button"]:hover{
-    transform: translateY(-3px) scale(1.05);
-    background: rgba(255,255,255,0.15);
-}
-
-/* ACTIVE PRESS EFFECT */
-.calculator form input[type="button"]:active{
-    transform: scale(0.95);
-}
-
-/* OPERATOR */
-.operator{
-    color: #00ffd5 !important;
-    font-weight: bold;
-}
-
-/* EQUAL BUTTON */
-.equal{
-    width: 48% !important;
-    background: linear-gradient(135deg, #00c6ff, #0072ff) !important;
-    color: #fff !important;
-    font-weight: bold;
-}
-
-/* =====================
-   LAPTOP
-===================== */
-@media (max-width: 1024px){
-    .calculator{
-        max-width: 340px;
-    }
-
-    form .display input{
-        font-size: 30px;
+@media (max-width: 1024px) {
+    .clock span {
+        font-size: clamp(35px, 7vw, 80px);
     }
 }
 
-/* =====================
-   TABLET
-===================== */
-@media (max-width: 768px){
-    .calculator{
-        max-width: 320px;
-        padding: 18px;
+@media (max-width: 768px) {
+    .clock {
+        padding: 25px 18px;
+        gap: 10px;
     }
 
-    form .display input{
-        font-size: 28px;
-        height: 65px;
+    .clock span {
+        font-size: clamp(32px, 9vw, 70px);
+        min-width: 50px;
     }
 
-    .calculator form input[type="button"]{
+    #ampm {
+        font-size: 20px;
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .clock {
+        flex-direction: column;
+        padding: 20px 15px;
+        gap: 6px;
+        text-align: center;
+    }
+
+    .clock span {
+        font-size: 40px;
+        min-width: auto;
+    }
+
+    #ampm {
+        margin-left: 0;
         font-size: 16px;
     }
-}
 
-/* =====================
-   MOBILE
-===================== */
-@media (max-width: 480px){
-    .calculator{
-        max-width: 300px;
-        padding: 15px;
-    }
-
-    form .display input{
-        font-size: 24px;
-        height: 55px;
-    }
-
-    .calculator form input[type="button"]{
-        font-size: 14px;
+    .hero::before,
+    .hero::after {
+        width: 140px;
+        height: 140px;
+        filter: blur(70px);
     }
 }
 
-/* =====================
-   SMALL MOBILE
-===================== */
-@media (max-width: 350px){
-    .calculator{
-        max-width: 260px;
+@media (max-width: 350px) {
+    .clock span {
+        font-size: 30px;
     }
 
-    form .display input{
-        font-size: 20px;
-    }
-
-    .calculator form input[type="button"]{
+    #ampm {
         font-size: 12px;
+        padding: 4px 8px;
     }
 }
