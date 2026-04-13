@@ -1,170 +1,154 @@
-*{
+/* RESET */
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-.container{
+/* BACKGROUND (Ultra Modern Gradient) */
+.hero {
     width: 100%;
     min-height: 100vh;
-    background: #e3f9ff;
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 20px;
+    align-items: center;
+    background: radial-gradient(circle at top, #1a0033, #000010 60%, #000);
+    overflow: hidden;
+    position: relative;
 }
 
-.calculator{
-    background: #3a4452;
-    padding: 25px;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 340px;
+/* Animated glowing background blobs */
+.hero::before,
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    filter: blur(120px);
+    border-radius: 50%;
+    animation: floatGlow 6s infinite alternate ease-in-out;
+    z-index: 0;
 }
 
-.calculator form input{
-    border: 0;
-    outline: 0;
-    width: 65px;
-    height: 65px;
-    border-radius: 12px;
-    box-shadow: 
-    -8px -8px 15px rgba(255, 255, 255, 0.1),
-     5px 5px 15px rgba(0, 0, 0, 0.2);
-    background: transparent;
-    font-size: 22px;
-    color: #fff;
-    cursor: pointer;
-    margin: 8px;
-    transition: 0.2s;
+.hero::before {
+    background: #ff00cc;
+    top: 10%;
+    left: 10%;
 }
 
-.calculator form input:hover{
-    transform: scale(1.05);
+.hero::after {
+    background: #00d4ff;
+    bottom: 10%;
+    right: 10%;
 }
 
-form .display{
+@keyframes floatGlow {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(-30px) scale(1.1); }
+}
+
+/* CONTAINER */
+.container {
+    position: relative;
+    z-index: 1;
+    width: min(800px, 95%);
+}
+
+/* GLASS CLOCK CARD */
+.clock {
     display: flex;
-    justify-content: flex-end;
-    margin: 20px 0;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 35px 25px;
+    border-radius: 25px;
+
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 10px 40px rgba(0,0,0,0.6),
+        inset 0 0 20px rgba(255,255,255,0.05);
+
+    transition: 0.3s ease;
 }
 
-form .display input{
-    text-align: right;
-    flex: 1;
-    font-size: 45px;
-    box-shadow: none;
+.clock:hover {
+    transform: scale(1.03);
+    box-shadow: 
+        0 15px 60px rgba(0,0,0,0.8),
+        0 0 30px rgba(255,0,200,0.3);
 }
 
-form input.equal{
-    width: 145px;
+/* TIME NUMBERS */
+.clock span {
+    font-size: clamp(40px, 8vw, 95px);
+    font-weight: 700;
+    color: #ffffff;
+    min-width: 70px;
+    text-align: center;
+
+    text-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
 
-form input.operator{
-    color: #33ffd8;
+/* COLONS (NEON BLINK) */
+.clock span:nth-child(2),
+.clock span:nth-child(4) {
+    color: #ff4dff;
+    animation: blink 1s infinite, glow 1.5s infinite alternate;
 }
 
-/* =====================
-   Large Screens
-===================== */
-
-@media (min-width: 1200px){
-    .calculator{
-        max-width: 380px;
-    }
-
-    .calculator form input{
-        width: 70px;
-        height: 70px;
-        font-size: 24px;
-    }
+@keyframes blink {
+    50% { opacity: 0.2; }
 }
 
-/* =====================
-   Laptop
-===================== */
-
-@media (max-width: 1024px){
-    .calculator form input{
-        width: 60px;
-        height: 60px;
-    }
-
-    form .display input{
-        font-size: 40px;
-    }
+@keyframes glow {
+    0% { text-shadow: 0 0 10px #ff4dff; }
+    100% { text-shadow: 0 0 25px #ff4dff; }
 }
 
-/* =====================
-   Tablet
-===================== */
+/* AM/PM STYLE */
+#ampm {
+    font-size: clamp(14px, 3vw, 28px);
+    font-weight: bold;
+    margin-left: 10px;
 
-@media (max-width: 768px){
+    padding: 6px 12px;
+    border-radius: 10px;
 
-    .calculator{
-        padding: 20px;
-    }
+    background: rgba(0, 255, 213, 0.1);
+    border: 1px solid rgba(0, 255, 213, 0.4);
 
-    .calculator form input{
-        width: 55px;
-        height: 55px;
-        font-size: 18px;
-        margin: 6px;
-    }
-
-    form .display input{
-        font-size: 35px;
-    }
-
-    form input.equal{
-        width: 125px;
-    }
+    color: #00ffd5;
+    text-shadow: 0 0 10px #00ffd5;
 }
 
-/* =====================
-   Mobile
-===================== */
-
-@media (max-width: 480px){
-
-    .calculator{
-        padding: 15px;
+/* TABLET */
+@media (max-width: 768px) {
+    .clock {
+        padding: 25px 15px;
     }
 
-    .calculator form input{
-        width: 48px;
-        height: 48px;
-        font-size: 16px;
-        margin: 5px;
-    }
-
-    form .display input{
-        font-size: 28px;
-    }
-
-    form input.equal{
-        width: 105px;
+    .hero::before,
+    .hero::after {
+        width: 200px;
+        height: 200px;
+        filter: blur(90px);
     }
 }
 
-/* =====================
-   Small Mobile
-===================== */
-
-@media (max-width: 350px){
-
-    .calculator form input{
-        width: 42px;
-        height: 42px;
-        font-size: 14px;
+/* MOBILE */
+@media (max-width: 480px) {
+    .clock {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
     }
 
-    form .display input{
-        font-size: 24px;
-    }
-
-    form input.equal{
-        width: 90px;
+    #ampm {
+        margin-left: 0;
     }
 }
